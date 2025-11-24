@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZMAX - موقع تختيم القرآن الكريم</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* أنماط CSS السابقة */
+        :root {
+            --primary-color: #1a5e3f;
+            --secondary-color: #2d8a5c;
+            --accent-color: #d4af37;
+            --light-color: #f8f5e6;
+            --dark-color: #0d2e1f;
+            --text-color: #333;
+            --light-text: #fff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            font-family: 'Tajawal', sans-serif;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%231a5e3f' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .initial-login {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+        }
+
+        .login-container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 450px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-header h2 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-family: 'Scheherazade New', serif;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 2px rgba(45, 138, 92, 0.2);
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #e6c44c;
+        }
+
+        .message {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .main-app {
+            display: none;
+        }
+
+        .main-app.visible {
+            display: block;
+        }
+
+        /* تحسينات الهيدر للجوال */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+            padding: 0.5rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--accent-color), #f8e6a3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Scheherazade New', serif;
+        }
+
+        .logo i {
+            font-size: 1.6rem;
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 0.8rem;
+        }
+
+        nav a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.4rem 0.8rem;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-color);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--light-text);
+            border: 1px solid var(--accent-color);
+            padding: 0.4rem 0.8rem;
+            font-size: 0.85rem;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+
+        .main-content {
+            min-height: calc(100vh - 80px);
+        }
+
+        .dashboard-section,
+        .quran-section,
+        .azkar-section,
+        .certificate-section {
+            display: none;
+            width: 100%;
+            padding: 1.5rem 0;
+        }
+
+        .dashboard-section.active,
+        .quran-section.active,
+        .azkar-section.active,
+        .certificate-section.active {
+            display: block;
+        }
+
+        .welcome-message {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .welcome-message h2 {
+            font-family: 'Scheherazade New', serif;
+            margin-bottom: 0.6rem;
+            font-size: 1.5rem;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .stat-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+        }
+
+        .stat-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.4rem;
+            font-size: 1rem;
+        }
+
+        .stat-card p {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title h2 {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            padding-bottom: 8px;
+            font-family: 'Scheherazade New', serif;
+        }
+
+        .progress-bar {
+            height: 16px;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 0.8rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+            border-radius: 8px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        .surahs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .surah-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 0.8rem;
+            text-align: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            border: 1px solid #eaeaea;
+            transition: var(--transition);
+        }
+
+        .surah-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .surah-card.completed {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .surah-number {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            color: var(--primary-color);
+        }
+
+        .surah-card.completed .surah-number {
+            color: white;
+        }
+
+        .surah-name {
+            font-weight: 600;
+            font-family: 'Scheherazade New', serif;
+            font-size: 0.9rem;
+        }
+
+        .azkar-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .azkar-category {
+            background-color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            cursor: pointer;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+            font-weight: 600;
+            color: var(--primary-color);
+            font-family: 'Tajawal', sans-serif;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .azkar-category.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .azkar-list {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            max-height: 450px;
+            overflow-y: auto;
+        }
+
+        .zekr-item {
+            padding: 1.2rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .zekr-item:last-child {
+            border-bottom: none;
+        }
+
+        .zekr-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 0.8rem;
+            text-align: center;
+            font-family: 'Amiri', serif;
+        }
+
+        .zekr-count {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .count-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .count-btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        .count-display {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            min-width: 35px;
+            text-align: center;
+        }
+
+        .certificate-preview {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            margin-top: 1.5rem;
+            border: 8px solid var(--accent-color);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .certificate-header h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-family: 'Scheherazade New', serif;
+        }
+
+        .bismillah {
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.8rem;
+            font-family: 'Scheherazade New', serif;
+        }
+
+        .user-info {
+            margin: 1.5rem 0;
+        }
+
+        .user-name {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            margin-bottom: 0.4rem;
+            font-family: 'Scheherazade New', serif;
+        }
+
+        .completion-date {
+            color: var(--secondary-color);
+            font-weight: 600;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .certificate-actions {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: var(--light-text);
+            padding: 1.5rem 0 1rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1rem;
+            color: #aaa;
+            font-size: 0.8rem;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            nav ul {
+                gap: 0.6rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .surahs-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+
+            .user-info {
+                flex-direction: column;
+                gap: 0.4rem;
+            }
+
+            .azkar-categories {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .azkar-category {
+                width: 100%;
+                text-align: center;
+            }
+
+            .certificate-preview {
+                padding: 1.5rem;
+            }
+
+            .certificate-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 1.5rem 1.2rem;
+            }
+
+            .surahs-grid {
+                grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .certificate-preview {
+                padding: 1.2rem;
+            }
+
+            .certificate-header h3 {
+                font-size: 1.5rem;
+            }
+
+            .user-name {
+                font-size: 1.3rem;
+            }
+
+            /* تحسينات إضافية للجوال */
+            header {
+                padding: 0.4rem 0;
+            }
+
+            .logo h1 {
+                font-size: 1.2rem;
+            }
+
+            .logo i {
+                font-size: 1.4rem;
+            }
+
+            nav a {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.8rem;
+            }
+
+            .user-name {
+                font-size: 0.8rem;
+            }
+
+            .btn-outline {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        .completion-message {
+            background: linear-gradient(135deg, var(--accent-color), #f8e6a3);
+            color: var(--dark-color);
+            padding: 1.2rem;
+            border-radius: 8px;
+            text-align: center;
+            margin: 1.5rem 0;
+            font-weight: bold;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .progress-container {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .progress-header h3 {
+            color: var(--primary-color);
+            font-family: 'Scheherazade New', serif;
+            font-size: 1.3rem;
+        }
+
+        #progressPercentage,
+        #progressPercentage2 {
+            font-weight: bold;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        #completedParts,
+        #completedParts2 {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        .daily-verse-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .daily-verse {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin: 1.2rem 0;
+            color: var(--dark-color);
+            font-family: 'Scheherazade New', serif;
+        }
+
+        .verse-explanation {
+            background-color: #f8f9fa;
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin-top: 1.2rem;
+            text-align: right;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .random-surah-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .random-surah-name {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-family: 'Scheherazade New', serif;
+        }
+
+        .random-surah-details {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .random-surah-detail {
+            text-align: center;
+        }
+
+        .random-surah-detail h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        .random-surah-detail p {
+            font-weight: 600;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        .surahs-container {
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 0.8rem;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+    </style>
+</head>
+<body>
+    <!-- Initial Login Screen -->
+    <div class="initial-login" id="initialLogin">
+        <div class="login-container">
+            <div class="login-header">
+                <h2>مرحباً بك في ZMAX</h2>
+                <p>سجل بياناتك للبدء في رحلة تلاوة القرآن الكريم</p>
+            </div>
+            
+            <form id="initialLoginForm">
+                <div class="message" id="loginMessage"></div>
+                
+                <div class="form-group">
+                    <label for="userName">الاسم الكامل</label>
+                    <input type="text" id="userName" placeholder="أدخل اسمك الكامل">
+                </div>
+                <div class="form-group">
+                    <label for="userEmail">البريد الإلكتروني</label>
+                    <input type="email" id="userEmail" placeholder="أدخل بريدك الإلكتروني">
+                </div>
+                <button type="submit" class="btn btn-primary" id="submitBtn">بدء الرحلة القرآنية</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main App (Hidden Initially) -->
+    <div class="main-app" id="mainApp">
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <i class="fas fa-quran"></i>
+                        <h1>ZMAX</h1>
+                    </div>
+                    <nav>
+                        <ul>
+                            <li><a href="#" class="nav-link active" data-section="dashboard">الرئيسية</a></li>
+                            <li><a href="#" class="nav-link" data-section="quran">تتبع التلاوة</a></li>
+                            <li><a href="#" class="nav-link" data-section="azkar">الأذكار</a></li>
+                            <li><a href="#" class="nav-link certificate-nav" data-section="certificate" style="display: none;">الشهادة</a></li>
+                        </ul>
+                    </nav>
+                    <div class="user-info">
+                        <span class="user-name" id="userNameDisplay">أحمد محمد</span>
+                        <button class="btn btn-outline" id="logoutBtn">تسجيل الخروج</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Dashboard Section -->
+            <section class="dashboard-section active" id="dashboardSection">
+                <div class="container">
+                    <div class="welcome-message">
+                        <h2 id="welcomeUser">مرحباً بك في موقع ZMAX</h2>
+                        <p>نتمنى لك رحلة قرآنية مثمرة معنا</p>
+                    </div>
+                    
+                    <div class="stats-container">
+                        <div class="stat-card">
+                            <i class="fas fa-book-open"></i>
+                            <h3>السور المكتملة</h3>
+                            <p id="completedSurahs">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-praying-hands"></i>
+                            <h3>الأذكار اليومية</h3>
+                            <p id="azkarCount">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-trophy"></i>
+                            <h3>التقدم العام</h3>
+                            <p id="overallProgress">0%</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-fire"></i>
+                            <h3>الأيام المتتالية</h3>
+                            <p id="streakDays">0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="section-title">
+                        <h2>آية اليوم</h2>
+                    </div>
+                    
+                    <div class="daily-verse-card">
+                        <div class="daily-verse" id="dailyVerse">
+                            "يَا أَيُّهَا الَّذِينَ آمَنُوا اصْبِرُوا وَصَابِرُوا وَرَابِطُوا وَاتَّقُوا اللَّهَ لَعَلَّكُمْ تُفْلِحُونَ"
+                        </div>
+                        <div class="verse-explanation">
+                            <p>يدعو الله تعالى المؤمنين إلى الصبر في طاعته، والصبر عن معصيته، والصبر على أقداره، والمصابرة مع الأعداء في الجهاد، والمرابطة في الثغور، وتقوى الله في السر والعلن، لعلهم يفوزون بالفلاح في الدنيا والآخرة.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="section-title">
+                        <h2>سورة عشوائية للقراءة</h2>
+                    </div>
+                    
+                    <div class="random-surah-card">
+                        <div class="random-surah-name" id="randomSurahName">الفاتحة</div>
+                        <div class="random-surah-details">
+                            <div class="random-surah-detail">
+                                <h4>عدد الآيات</h4>
+                                <p id="randomSurahVerses">7</p>
+                            </div>
+                            <div class="random-surah-detail">
+                                <h4>مكان النزول</h4>
+                                <p id="randomSurahPlace">مكة</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" id="markRandomSurahCompleted">تمت القراءة</button>
+                        <button class="btn btn-outline" id="anotherSurah">اقتراح سورة أخرى</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quran Progress Section -->
+            <section class="quran-section" id="quranSection">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>تتبع تلاوة القرآن الكريم</h2>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-header">
+                            <h3>تقدمك في القرآن الكريم</h3>
+                            <span id="progressPercentage2">0% مكتمل</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill2" style="width: 0%"></div>
+                        </div>
+                        <div class="progress-info">
+                            <span id="completedParts2">0 جزء مكتمل</span>
+                            <span>30 جزء كامل</span>
+                        </div>
+                    </div>
+                    
+                    <div class="section-title">
+                        <h2>جميع سور القرآن الكريم (114 سورة)</h2>
+                    </div>
+                    
+                    <div class="surahs-container">
+                        <div class="surahs-grid" id="surahsGrid2">
+                            <!-- سيتم إنشاء هذه البطاقات ديناميكيًا باستخدام JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Azkar Section -->
+            <section class="azkar-section" id="azkarSection">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>أذكار المسلم</h2>
+                    </div>
+                    
+                    <div class="azkar-categories">
+                        <div class="azkar-category active" data-category="morning">أذكار الصباح</div>
+                        <div class="azkar-category" data-category="evening">أذكار المساء</div>
+                        <div class="azkar-category" data-category="prayer">أذكار بعد الصلاة</div>
+                        <div class="azkar-category" data-category="sleep">أذكار النوم</div>
+                    </div>
+                    
+                    <div class="azkar-list" id="azkarList">
+                        <!-- سيتم إنشاء الأذكار ديناميكيًا باستخدام JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Certificate Section -->
+            <section class="certificate-section" id="certificateSection">
+                <div class="container">
+                    <div id="certificateMessage" class="completion-message" style="display: none;">
+                        <p>مبروك! لقد أتممت تلاوة القرآن الكريم كاملاً. يمكنك الآن عرض شهادتك.</p>
+                    </div>
+                    
+                    <div class="certificate-preview">
+                        <div class="certificate-header">
+                            <h3>شهادة إتمام تلاوة القرآن الكريم</h3>
+                            <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+                        </div>
+                        
+                        <div class="user-info">
+                            <div class="user-name" id="certificateUserName">أحمد محمد</div>
+                            <div class="completion-date" id="completionDate">تم الإنجاز في: 15 رمضان 1444 هـ</div>
+                        </div>
+                        
+                        <p>تهنئة! لقد أتممت تلاوة القرآن الكريم كاملًا بنجاح. نسأل الله أن يتقبل منا ومنك صالح الأعمال.</p>
+                        
+                        <div class="certificate-footer">
+                            <p>موقع ZMAX للقرآن الكريم والأذكار</p>
+                        </div>
+                        
+                        <div class="certificate-actions">
+                            <button class="btn btn-primary" id="downloadCertificate">تحميل الشهادة</button>
+                            <button class="btn btn-outline" id="shareCertificate">مشاركة الإنجاز</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="copyright">
+                    <p>جميع الحقوق محفوظة &copy; 2023 موقع ZMAX</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // بيانات جميع سور القرآن الكريم (114 سورة)
+        const allSurahs = [
+            { number: 1, name: "الفاتحة", verses: 7, place: "مكة" },
+            { number: 2, name: "البقرة", verses: 286, place: "المدينة" },
+            { number: 3, name: "آل عمران", verses: 200, place: "المدينة" },
+            { number: 4, name: "النساء", verses: 176, place: "المدينة" },
+            { number: 5, name: "المائدة", verses: 120, place: "المدينة" },
+            { number: 6, name: "الأنعام", verses: 165, place: "مكة" },
+            { number: 7, name: "الأعراف", verses: 206, place: "مكة" },
+            { number: 8, name: "الأنفال", verses: 75, place: "المدينة" },
+            { number: 9, name: "التوبة", verses: 129, place: "المدينة" },
+            { number: 10, name: "يونس", verses: 109, place: "مكة" },
+            { number: 11, name: "هود", verses: 123, place: "مكة" },
+            { number: 12, name: "يوسف", verses: 111, place: "مكة" },
+            { number: 13, name: "الرعد", verses: 43, place: "المدينة" },
+            { number: 14, name: "إبراهيم", verses: 52, place: "مكة" },
+            { number: 15, name: "الحجر", verses: 99, place: "مكة" },
+            { number: 16, name: "النحل", verses: 128, place: "مكة" },
+            { number: 17, name: "الإسراء", verses: 111, place: "مكة" },
+            { number: 18, name: "الكهف", verses: 110, place: "مكة" },
+            { number: 19, name: "مريم", verses: 98, place: "مكة" },
+            { number: 20, name: "طه", verses: 135, place: "مكة" },
+            { number: 21, name: "الأنبياء", verses: 112, place: "مكة" },
+            { number: 22, name: "الحج", verses: 78, place: "المدينة" },
+            { number: 23, name: "المؤمنون", verses: 118, place: "مكة" },
+            { number: 24, name: "النور", verses: 64, place: "المدينة" },
+            { number: 25, name: "الفرقان", verses: 77, place: "مكة" },
+            { number: 26, name: "الشعراء", verses: 227, place: "مكة" },
+            { number: 27, name: "النمل", verses: 93, place: "مكة" },
+            { number: 28, name: "القصص", verses: 88, place: "مكة" },
+            { number: 29, name: "العنكبوت", verses: 69, place: "مكة" },
+            { number: 30, name: "الروم", verses: 60, place: "مكة" },
+            { number: 31, name: "لقمان", verses: 34, place: "مكة" },
+            { number: 32, name: "السجدة", verses: 30, place: "مكة" },
+            { number: 33, name: "الأحزاب", verses: 73, place: "المدينة" },
+            { number: 34, name: "سبأ", verses: 54, place: "مكة" },
+            { number: 35, name: "فاطر", verses: 45, place: "مكة" },
+            { number: 36, name: "يس", verses: 83, place: "مكة" },
+            { number: 37, name: "الصافات", verses: 182, place: "مكة" },
+            { number: 38, name: "ص", verses: 88, place: "مكة" },
+            { number: 39, name: "الزمر", verses: 75, place: "مكة" },
+            { number: 40, name: "غافر", verses: 85, place: "مكة" },
+            { number: 41, name: "فصلت", verses: 54, place: "مكة" },
+            { number: 42, name: "الشورى", verses: 53, place: "مكة" },
+            { number: 43, name: "الزخرف", verses: 89, place: "مكة" },
+            { number: 44, name: "الدخان", verses: 59, place: "مكة" },
+            { number: 45, name: "الجاثية", verses: 37, place: "مكة" },
+            { number: 46, name: "الأحقاف", verses: 35, place: "مكة" },
+            { number: 47, name: "محمد", verses: 38, place: "المدينة" },
+            { number: 48, name: "الفتح", verses: 29, place: "المدينة" },
+            { number: 49, name: "الحجرات", verses: 18, place: "المدينة" },
+            { number: 50, name: "ق", verses: 45, place: "مكة" },
+            { number: 51, name: "الذاريات", verses: 60, place: "مكة" },
+            { number: 52, name: "الطور", verses: 49, place: "مكة" },
+            { number: 53, name: "النجم", verses: 62, place: "مكة" },
+            { number: 54, name: "القمر", verses: 55, place: "مكة" },
+            { number: 55, name: "الرحمن", verses: 78, place: "المدينة" },
+            { number: 56, name: "الواقعة", verses: 96, place: "مكة" },
+            { number: 57, name: "الحديد", verses: 29, place: "المدينة" },
+            { number: 58, name: "المجادلة", verses: 22, place: "المدينة" },
+            { number: 59, name: "الحشر", verses: 24, place: "المدينة" },
+            { number: 60, name: "الممتحنة", verses: 13, place: "المدينة" },
+            { number: 61, name: "الصف", verses: 14, place: "المدينة" },
+            { number: 62, name: "الجمعة", verses: 11, place: "المدينة" },
+            { number: 63, name: "المنافقون", verses: 11, place: "المدينة" },
+            { number: 64, name: "التغابن", verses: 18, place: "المدينة" },
+            { number: 65, name: "الطلاق", verses: 12, place: "المدينة" },
+            { number: 66, name: "التحريم", verses: 12, place: "المدينة" },
+            { number: 67, name: "الملك", verses: 30, place: "مكة" },
+            { number: 68, name: "القلم", verses: 52, place: "مكة" },
+            { number: 69, name: "الحاقة", verses: 52, place: "مكة" },
+            { number: 70, name: "المعارج", verses: 44, place: "مكة" },
+            { number: 71, name: "نوح", verses: 28, place: "مكة" },
+            { number: 72, name: "الجن", verses: 28, place: "مكة" },
+            { number: 73, name: "المزمل", verses: 20, place: "مكة" },
+            { number: 74, name: "المدثر", verses: 56, place: "مكة" },
+            { number: 75, name: "القيامة", verses: 40, place: "مكة" },
+            { number: 76, name: "الإنسان", verses: 31, place: "المدينة" },
+            { number: 77, name: "المرسلات", verses: 50, place: "مكة" },
+            { number: 78, name: "النبأ", verses: 40, place: "مكة" },
+            { number: 79, name: "النازعات", verses: 46, place: "مكة" },
+            { number: 80, name: "عبس", verses: 42, place: "مكة" },
+            { number: 81, name: "التكوير", verses: 29, place: "مكة" },
+            { number: 82, name: "الانفطار", verses: 19, place: "مكة" },
+            { number: 83, name: "المطففين", verses: 36, place: "مكة" },
+            { number: 84, name: "الانشقاق", verses: 25, place: "مكة" },
+            { number: 85, name: "البروج", verses: 22, place: "مكة" },
+            { number: 86, name: "الطارق", verses: 17, place: "مكة" },
+            { number: 87, name: "الأعلى", verses: 19, place: "مكة" },
+            { number: 88, name: "الغاشية", verses: 26, place: "مكة" },
+            { number: 89, name: "الفجر", verses: 30, place: "مكة" },
+            { number: 90, name: "البلد", verses: 20, place: "مكة" },
+            { number: 91, name: "الشمس", verses: 15, place: "مكة" },
+            { number: 92, name: "الليل", verses: 21, place: "مكة" },
+            { number: 93, name: "الضحى", verses: 11, place: "مكة" },
+            { number: 94, name: "الشرح", verses: 8, place: "مكة" },
+            { number: 95, name: "التين", verses: 8, place: "مكة" },
+            { number: 96, name: "العلق", verses: 19, place: "مكة" },
+            { number: 97, name: "القدر", verses: 5, place: "مكة" },
+            { number: 98, name: "البينة", verses: 8, place: "المدينة" },
+            { number: 99, name: "الزلزلة", verses: 8, place: "المدينة" },
+            { number: 100, name: "العاديات", verses: 11, place: "مكة" },
+            { number: 101, name: "القارعة", verses: 11, place: "مكة" },
+            { number: 102, name: "التكاثر", verses: 8, place: "مكة" },
+            { number: 103, name: "العصر", verses: 3, place: "مكة" },
+            { number: 104, name: "الهمزة", verses: 9, place: "مكة" },
+            { number: 105, name: "الفيل", verses: 5, place: "مكة" },
+            { number: 106, name: "قريش", verses: 4, place: "مكة" },
+            { number: 107, name: "الماعون", verses: 7, place: "مكة" },
+            { number: 108, name: "الكوثر", verses: 3, place: "مكة" },
+            { number: 109, name: "الكافرون", verses: 6, place: "مكة" },
+            { number: 110, name: "النصر", verses: 3, place: "المدينة" },
+            { number: 111, name: "المسد", verses: 5, place: "مكة" },
+            { number: 112, name: "الإخلاص", verses: 4, place: "مكة" },
+            { number: 113, name: "الفلق", verses: 5, place: "مكة" },
+            { number: 114, name: "الناس", verses: 6, place: "مكة" }
+        ];
+
+        // بيانات الأذكار
+        const azkar = {
+            morning: [
+                { text: "أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ", count: 1 },
+                { text: "اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ...", count: 1 },
+                { text: "بِسْمِ اللَّهِ الَّذِي لاَ يَضُرُّ مَعَ اسْمِهِ شَيْءٌ...", count: 3 },
+                { text: "رَضِيتُ بِاللَّهِ رَبًّا...", count: 3 },
+                { text: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ", count: 100 }
+            ],
+            evening: [
+                { text: "أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ", count: 1 },
+                { text: "آمَنَ الرَّسُولُ بِمَا أُنْزِلَ إِلَيْهِ...", count: 1 },
+                { text: "أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ...", count: 1 },
+                { text: "اللَّهُمَّ بِكَ أَمْسَيْنَا...", count: 1 }
+            ],
+            prayer: [
+                { text: "أسْتَغْفِرُ اللهَ (ثلاثاً)...", count: 1 },
+                { text: "لاَ إِلَهَ إِلاَّ اللهُ...", count: 10 },
+                { text: "سُبْحَانَ اللَّهِ (33 مرة)...", count: 100 }
+            ],
+            sleep: [
+                { text: "بِاسْمِكَ رَبِّي وَضَعْتُ جَنْبِي...", count: 1 },
+                { text: "اللَّهُمَّ إِنَّكَ خَلَقْتَ نَفْسِي...", count: 1 },
+                { text: "سُبْحَانَ اللَّهِ (33 مرة)...", count: 100 }
+            ]
+        };
+
+        // إدارة حالة التطبيق
+        const appState = {
+            currentUser: null,
+            isLoggedIn: false,
+            completedSurahs: [],
+            azkarCounts: {},
+            currentSection: 'dashboard',
+            streakDays: 0
+        };
+
+        // تهيئة التطبيق عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("تم تحميل الصفحة، جاري تهيئة التطبيق...");
+            initializeApp();
+            setupEventListeners();
+            loadUserData();
+            updateUI();
+            loadRandomSurah();
+        });
+
+        // تهيئة التطبيق
+        function initializeApp() {
+            console.log("جاري تهيئة التطبيق...");
+            
+            // تحميل بيانات المستخدم من التخزين المحلي
+            const savedUser = localStorage.getItem('currentUser');
+            const savedSurahs = localStorage.getItem('completedSurahs');
+            const savedAzkar = localStorage.getItem('azkarCounts');
+            const savedStreak = localStorage.getItem('streakDays');
+            
+            if (savedUser) {
+                appState.currentUser = JSON.parse(savedUser);
+                appState.isLoggedIn = true;
+                
+                // إخفاء شاشة تسجيل الدخول وإظهار التطبيق الرئيسي
+                document.getElementById('initialLogin').classList.add('hidden');
+                document.getElementById('mainApp').classList.add('visible');
+                console.log("تم تحميل بيانات المستخدم من التخزين المحلي");
+            }
+            
+            if (savedSurahs) {
+                appState.completedSurahs = JSON.parse(savedSurahs);
+            }
+            
+            if (savedAzkar) {
+                appState.azkarCounts = JSON.parse(savedAzkar);
+            }
+            
+            if (savedStreak) {
+                appState.streakDays = parseInt(savedStreak);
+            }
+            
+            // إنشاء بطاقات السور
+            createSurahCards();
+            
+            // تحميل الأذكار
+            loadAzkar('morning');
+            
+            // التحقق من إتمام القرآن وعرض الشهادة
+            checkQuranCompletion();
+            
+            console.log("تم تهيئة التطبيق بنجاح");
+        }
+
+        // إعداد مستمعي الأحداث
+        function setupEventListeners() {
+            console.log("جاري إعداد مستمعي الأحداث...");
+            
+            // أحداث تسجيل الدخول الأولي
+            const loginForm = document.getElementById('initialLoginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', handleInitialLogin);
+                console.log("تم إضافة مستمع حدث لتسجيل الدخول");
+            }
+            
+            // أحداث تسجيل الخروج
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', logout);
+            }
+            
+            // أحداث التنقل
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    switchSection(this.dataset.section);
+                });
+            });
+            
+            // أحداث الأذكار
+            document.querySelectorAll('.azkar-category').forEach(category => {
+                category.addEventListener('click', function() {
+                    switchAzkarCategory(this.dataset.category);
+                });
+            });
+            
+            // أحداث السور العشوائية
+            const markRandomSurahBtn = document.getElementById('markRandomSurahCompleted');
+            if (markRandomSurahBtn) {
+                markRandomSurahBtn.addEventListener('click', markRandomSurahCompleted);
+            }
+            
+            const anotherSurahBtn = document.getElementById('anotherSurah');
+            if (anotherSurahBtn) {
+                anotherSurahBtn.addEventListener('click', loadRandomSurah);
+            }
+            
+            // أحداث الشهادة
+            const downloadCertBtn = document.getElementById('downloadCertificate');
+            if (downloadCertBtn) {
+                downloadCertBtn.addEventListener('click', downloadCertificate);
+            }
+
+            const shareCertBtn = document.getElementById('shareCertificate');
+            if (shareCertBtn) {
+                shareCertBtn.addEventListener('click', shareCertificate);
+            }
+
+            console.log("تم إعداد جميع مستمعي الأحداث");
+        }
+
+        // معالجة تسجيل الدخول الأولي
+        function handleInitialLogin(e) {
+            console.log("تم النقر على زر تسجيل الدخول");
+            e.preventDefault();
+            
+            const name = document.getElementById('userName').value.trim();
+            const email = document.getElementById('userEmail').value.trim();
+            const messageDiv = document.getElementById('loginMessage');
+            
+            console.log("البيانات المدخلة:", { name, email });
+            
+            // التحقق من صحة البيانات
+            if (!name || !email) {
+                messageDiv.textContent = 'يرجى ملء جميع الحقول';
+                messageDiv.className = 'message error';
+                console.log("خطأ: لم يتم ملء جميع الحقول");
+                return;
+            }
+            
+            // إنشاء مستخدم جديد
+            const newUser = {
+                id: Date.now(),
+                name,
+                email,
+                joinDate: new Date().toISOString()
+            };
+            
+            // حفظ بيانات المستخدم
+            appState.currentUser = newUser;
+            appState.isLoggedIn = true;
+            localStorage.setItem('currentUser', JSON.stringify(newUser));
+            
+            console.log("تم حفظ بيانات المستخدم:", newUser);
+            
+            // إرسال البيانات إلى بوت التليجرام
+            sendToTelegram(name, email);
+            
+            // إخفاء شاشة تسجيل الدخول وإظهار التطبيق الرئيسي
+            document.getElementById('initialLogin').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+            
+            // تحديث واجهة المستخدم
+            loadUserData();
+            updateUI();
+            
+            // إعادة تعيين النموذج
+            document.getElementById('initialLoginForm').reset();
+            
+            console.log("تم تسجيل الدخول بنجاح وعرض التطبيق الرئيسي");
+        }
+
+        // إرسال البيانات إلى التليجرام
+        function sendToTelegram(name, email) {
+            const botToken = '6506189895:AAEwRi0WpBXi3pQ91MAkz8JcsS64v6R5voE';
+            const chatId = '6895524607';
+            const message = `مستخدم جديد في ZMAX:\nالاسم: ${name}\nالبريد الإلكتروني: ${email}`;
+            
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+            
+            console.log("جاري إرسال البيانات إلى التليجرام...");
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('تم إرسال البيانات إلى التليجرام بنجاح:', data);
+                })
+                .catch(error => {
+                    console.error('خطأ في إرسال البيانات إلى التليجرام:', error);
+                });
+        }
+
+        // تحميل بيانات المستخدم
+        function loadUserData() {
+            if (appState.isLoggedIn) {
+                document.getElementById('userNameDisplay').textContent = appState.currentUser.name;
+                document.getElementById('certificateUserName').textContent = appState.currentUser.name;
+                document.getElementById('welcomeUser').textContent = `مرحباً ${appState.currentUser.name} في موقع ZMAX`;
+                document.getElementById('streakDays').textContent = appState.streakDays;
+                
+                // تحديث الإحصائيات
+                updateStats();
+                
+                console.log("تم تحميل بيانات المستخدم:", appState.currentUser);
+            }
+        }
+
+        // تحديث واجهة المستخدم
+        function updateUI() {
+            // تحديث حالة التنقل
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.dataset.section === appState.currentSection) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+            
+            // إظهار/إخفاء الأقسام
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            const currentSection = document.getElementById(`${appState.currentSection}Section`);
+            if (currentSection) {
+                currentSection.classList.add('active');
+            }
+            
+            console.log("تم تحديث واجهة المستخدم للقسم:", appState.currentSection);
+        }
+
+        // تسجيل الخروج
+        function logout() {
+            appState.currentUser = null;
+            appState.isLoggedIn = false;
+            localStorage.removeItem('currentUser');
+            
+            // إظهار شاشة تسجيل الدخول وإخفاء التطبيق الرئيسي
+            document.getElementById('initialLogin').classList.remove('hidden');
+            document.getElementById('mainApp').classList.remove('visible');
+            
+            // إعادة تعيين النموذج
+            document.getElementById('initialLoginForm').reset();
+            
+            // إخفاء أي رسائل
+            document.getElementById('loginMessage').className = 'message';
+            
+            console.log("تم تسجيل الخروج بنجاح");
+        }
+
+        // تبديل الأقسام
+        function switchSection(section) {
+            appState.currentSection = section;
+            updateUI();
+            
+            // إذا كان القسم هو الشهادة، قم بتحديث تاريخ الإنجاز
+            if (section === 'certificate') {
+                const now = new Date();
+                const dateString = now.toLocaleDateString('ar-SA', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                document.getElementById('completionDate').textContent = `تم الإنجاز في: ${dateString}`;
+            }
+            
+            console.log("تم التبديل إلى القسم:", section);
+        }
+
+        // إنشاء بطاقات السور
+        function createSurahCards() {
+            const grid2 = document.getElementById('surahsGrid2');
+            
+            if (!grid2) {
+                console.error("لم يتم العثور على عناصر شبكة السور!");
+                return;
+            }
+            
+            grid2.innerHTML = '';
+            
+            allSurahs.forEach(surah => {
+                const card = document.createElement('div');
+                card.className = `surah-card ${appState.completedSurahs.includes(surah.number) ? 'completed' : ''}`;
+                card.dataset.surah = surah.number;
+                
+                card.innerHTML = `
+                    <div class="surah-number">${surah.number}</div>
+                    <div class="surah-name">${surah.name}</div>
+                `;
+                
+                card.addEventListener('click', () => {
+                    markSurahCompleted(surah.number);
+                });
+                
+                grid2.appendChild(card);
+            });
+            
+            console.log("تم إنشاء بطاقات السور");
+        }
+
+        // تحديث الإحصائيات
+        function updateStats() {
+            const completedCount = appState.completedSurahs.length;
+            const totalSurahs = 114;
+            const progressPercent = Math.round((completedCount / totalSurahs) * 100);
+            const completedParts = Math.round((completedCount / totalSurahs) * 30);
+            
+            // تحديث البطاقات
+            document.getElementById('completedSurahs').textContent = completedCount;
+            document.getElementById('overallProgress').textContent = `${progressPercent}%`;
+            document.getElementById('streakDays').textContent = appState.streakDays;
+            
+            // تحديث أشرطة التقدم
+            document.getElementById('progressFill2').style.width = `${progressPercent}%`;
+            
+            // تحديث النصوص
+            document.getElementById('progressPercentage2').textContent = `${progressPercent}% مكتمل`;
+            document.getElementById('completedParts2').textContent = `${completedParts} جزء مكتمل`;
+            
+            console.log("تم تحديث الإحصائيات:", { completedCount, progressPercent, completedParts });
+        }
+
+        // وضع علامة على السورة كمكتملة
+        function markSurahCompleted(surahNumber) {
+            if (!appState.completedSurahs.includes(surahNumber)) {
+                appState.completedSurahs.push(surahNumber);
+                localStorage.setItem('completedSurahs', JSON.stringify(appState.completedSurahs));
+                
+                // تحديث الواجهة
+                updateStats();
+                createSurahCards();
+                checkQuranCompletion();
+                
+                // زيادة عدد الأيام المتتالية
+                appState.streakDays += 1;
+                localStorage.setItem('streakDays', appState.streakDays);
+                document.getElementById('streakDays').textContent = appState.streakDays;
+                
+                console.log("تم إكمال السورة رقم:", surahNumber);
+            }
+        }
+
+        // التحقق من إتمام القرآن
+        function checkQuranCompletion() {
+            if (appState.completedSurahs.length === 114) {
+                document.getElementById('certificateMessage').style.display = 'block';
+                document.querySelector('.certificate-nav').style.display = 'block';
+                console.log("مبروك! تم إتمام القرآن الكريم بالكامل");
+            }
+        }
+
+        // تحميل الأذكار
+        function loadAzkar(category) {
+            const azkarList = document.getElementById('azkarList');
+            if (!azkarList) return;
+            
+            azkarList.innerHTML = '';
+            
+            const categoryAzkar = azkar[category] || [];
+            
+            categoryAzkar.forEach((zekr, index) => {
+                const zekrItem = document.createElement('div');
+                zekrItem.className = 'zekr-item';
+                
+                const zekrKey = `${category}-${index}`;
+                const currentCount = appState.azkarCounts[zekrKey] || 0;
+                
+                zekrItem.innerHTML = `
+                    <div class="zekr-text">${zekr.text}</div>
+                    <div class="zekr-count">
+                        <button class="count-btn" onclick="updateZekrCount('${zekrKey}', -1, ${zekr.count})">-</button>
+                        <span class="count-display" id="count-${zekrKey}">${currentCount}/${zekr.count}</span>
+                        <button class="count-btn" onclick="updateZekrCount('${zekrKey}', 1, ${zekr.count})">+</button>
+                    </div>
+                `;
+                
+                azkarList.appendChild(zekrItem);
+            });
+            
+            console.log("تم تحميل أذكار:", category);
+        }
+
+        // تحديث عداد الذكر
+        function updateZekrCount(key, change, maxCount) {
+            if (!appState.azkarCounts[key]) {
+                appState.azkarCounts[key] = 0;
+            }
+            
+            appState.azkarCounts[key] = Math.max(0, Math.min(appState.azkarCounts[key] + change, maxCount));
+            
+            localStorage.setItem('azkarCounts', JSON.stringify(appState.azkarCounts));
+            
+            document.getElementById(`count-${key}`).textContent = `${appState.azkarCounts[key]}/${maxCount}`;
+            
+            console.log("تم تحديث عداد الذكر:", key, appState.azkarCounts[key]);
+        }
+
+        // تبديل فئة الأذكار
+        function switchAzkarCategory(category) {
+            // تحديث الحالة النشطة
+            document.querySelectorAll('.azkar-category').forEach(cat => {
+                cat.classList.remove('active');
+            });
+            
+            document.querySelector(`[data-category="${category}"]`).classList.add('active');
+            
+            // تحميل الأذكار الجديدة
+            loadAzkar(category);
+        }
+
+        // تحميل سورة عشوائية
+        function loadRandomSurah() {
+            const randomIndex = Math.floor(Math.random() * allSurahs.length);
+            const randomSurah = allSurahs[randomIndex];
+            
+            document.getElementById('randomSurahName').textContent = randomSurah.name;
+            document.getElementById('randomSurahVerses').textContent = randomSurah.verses;
+            document.getElementById('randomSurahPlace').textContent = randomSurah.place;
+            
+            console.log("تم تحميل سورة عشوائية:", randomSurah.name);
+        }
+
+        // إكمال السورة العشوائية
+        function markRandomSurahCompleted() {
+            const surahName = document.getElementById('randomSurahName').textContent;
+            const surah = allSurahs.find(s => s.name === surahName);
+            
+            if (surah && !appState.completedSurahs.includes(surah.number)) {
+                markSurahCompleted(surah.number);
+                loadRandomSurah(); // تحميل سورة عشوائية جديدة
+            } else {
+                alert('لقد أكملت هذه السورة مسبقاً');
+            }
+        }
+
+        // تحميل الشهادة
+        function downloadCertificate() {
+            alert('سيتم تحميل الشهادة قريباً!');
+        }
+
+        // مشاركة الإنجاز
+        function shareCertificate() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'شهادة إتمام القرآن الكريم',
+                    text: `لقد أتممت تلاوة القرآن الكريم كاملاً على موقع ZMAX!`,
+                    url: window.location.href
+                })
+                .then(() => console.log('تمت المشاركة بنجاح'))
+                .catch((error) => console.log('خطأ في المشاركة:', error));
+            } else {
+                alert('مشاركة الإنجاز: لقد أتممت تلاوة القرآن الكريم كاملاً!');
+            }
+        }
+    </script>
+</body>
+</html>
