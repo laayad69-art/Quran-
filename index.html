@@ -1289,27 +1289,6 @@
             
             console.log("تم تسجيل الدخول بنجاح وعرض التطبيق الرئيسي");
         }
-
-        // إرسال البيانات إلى التليجرام
-        function sendToTelegram(name, email) {
-            const botToken = '6506189895:AAEwRi0WpBXi3pQ91MAkz8JcsS64v6R5voE';
-            const chatId = '6895524607';
-            const message = `مستخدم جديد في ZMAX:\nالاسم: ${name}\nالبريد الإلكتروني: ${email}`;
-            
-            const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
-            
-            console.log("جاري إرسال البيانات إلى التليجرام...");
-            
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    console.log('تم إرسال البيانات إلى التليجرام بنجاح:', data);
-                })
-                .catch(error => {
-                    console.error('خطأ في إرسال البيانات إلى التليجرام:', error);
-                });
-        }
-
         // تحميل بيانات المستخدم
         function loadUserData() {
             if (appState.isLoggedIn) {
@@ -1517,18 +1496,15 @@
 
         // تبديل فئة الأذكار
         function switchAzkarCategory(category) {
-            // تحديث الحالة النشطة
-            document.querySelectorAll('.azkar-category').forEach(cat => {
+             document.querySelectorAll('.azkar-category').forEach(cat => {
                 cat.classList.remove('active');
             });
             
             document.querySelector(`[data-category="${category}"]`).classList.add('active');
             
-            // تحميل الأذكار الجديدة
-            loadAzkar(category);
+        loadAzkar(category);
         }
 
-        // تحميل سورة عشوائية
         function loadRandomSurah() {
             const randomIndex = Math.floor(Math.random() * allSurahs.length);
             const randomSurah = allSurahs[randomIndex];
@@ -1540,7 +1516,6 @@
             console.log("تم تحميل سورة عشوائية:", randomSurah.name);
         }
 
-        // إكمال السورة العشوائية
         function markRandomSurahCompleted() {
             const surahName = document.getElementById('randomSurahName').textContent;
             const surah = allSurahs.find(s => s.name === surahName);
