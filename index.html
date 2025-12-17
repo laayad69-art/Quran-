@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* أنماط CSS السابقة */
         :root {
             --primary-color: #1a5e3f;
             --secondary-color: #2d8a5c;
@@ -156,8 +155,6 @@
         .main-app.visible {
             display: block;
         }
-
-        /* تحسينات الهيدر للجوال */
         header {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: var(--light-text);
@@ -607,7 +604,7 @@
                 font-size: 1.3rem;
             }
 
-            /* تحسينات إضافية للجوال */
+
             header {
                 padding: 0.4rem 0;
             }
@@ -758,7 +755,6 @@
     </style>
 </head>
 <body>
-    <!-- Initial Login Screen -->
     <div class="initial-login" id="initialLogin">
         <div class="login-container">
             <div class="login-header">
@@ -782,7 +778,7 @@
         </div>
     </div>
 
-    <!-- Main App (Hidden Initially) -->
+    
     <div class="main-app" id="mainApp">
         <!-- Header -->
         <header>
@@ -808,10 +804,8 @@
             </div>
         </header>
 
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Dashboard Section -->
-            <section class="dashboard-section active" id="dashboardSection">
+ <div class="main-content">
+         <section class="dashboard-section active" id="dashboardSection">
                 <div class="container">
                     <div class="welcome-message">
                         <h2 id="welcomeUser">مرحباً بك في موقع ZMAX</h2>
@@ -876,8 +870,7 @@
                 </div>
             </section>
 
-            <!-- Quran Progress Section -->
-            <section class="quran-section" id="quranSection">
+       <section class="quran-section" id="quranSection">
                 <div class="container">
                     <div class="section-title">
                         <h2>تتبع تلاوة القرآن الكريم</h2>
@@ -909,8 +902,7 @@
                 </div>
             </section>
 
-            <!-- Azkar Section -->
-            <section class="azkar-section" id="azkarSection">
+           <section class="azkar-section" id="azkarSection">
                 <div class="container">
                     <div class="section-title">
                         <h2>أذكار المسلم</h2>
@@ -924,8 +916,7 @@
                     </div>
                     
                     <div class="azkar-list" id="azkarList">
-                        <!-- سيتم إنشاء الأذكار ديناميكيًا باستخدام JavaScript -->
-                    </div>
+                  </div>
                 </div>
             </section>
 
@@ -972,7 +963,6 @@
     </div>
 
     <script>
-        // بيانات جميع سور القرآن الكريم (114 سورة)
         const allSurahs = [
             { number: 1, name: "الفاتحة", verses: 7, place: "مكة" },
             { number: 2, name: "البقرة", verses: 286, place: "المدينة" },
@@ -1090,7 +1080,6 @@
             { number: 114, name: "الناس", verses: 6, place: "مكة" }
         ];
 
-        // بيانات الأذكار
         const azkar = {
             morning: [
                 { text: "أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ", count: 1 },
@@ -1117,7 +1106,6 @@
             ]
         };
 
-        // إدارة حالة التطبيق
         const appState = {
             currentUser: null,
             isLoggedIn: false,
@@ -1126,9 +1114,7 @@
             currentSection: 'dashboard',
             streakDays: 0
         };
-
-        // تهيئة التطبيق عند تحميل الصفحة
-        document.addEventListener('DOMContentLoaded', function() {
+           document.addEventListener('DOMContentLoaded', function() {
             console.log("تم تحميل الصفحة، جاري تهيئة التطبيق...");
             initializeApp();
             setupEventListeners();
@@ -1137,11 +1123,9 @@
             loadRandomSurah();
         });
 
-        // تهيئة التطبيق
         function initializeApp() {
             console.log("جاري تهيئة التطبيق...");
             
-            // تحميل بيانات المستخدم من التخزين المحلي
             const savedUser = localStorage.getItem('currentUser');
             const savedSurahs = localStorage.getItem('completedSurahs');
             const savedAzkar = localStorage.getItem('azkarCounts');
@@ -1151,7 +1135,6 @@
                 appState.currentUser = JSON.parse(savedUser);
                 appState.isLoggedIn = true;
                 
-                // إخفاء شاشة تسجيل الدخول وإظهار التطبيق الرئيسي
                 document.getElementById('initialLogin').classList.add('hidden');
                 document.getElementById('mainApp').classList.add('visible');
                 console.log("تم تحميل بيانات المستخدم من التخزين المحلي");
@@ -1169,51 +1152,42 @@
                 appState.streakDays = parseInt(savedStreak);
             }
             
-            // إنشاء بطاقات السور
-            createSurahCards();
+          createSurahCards();
             
-            // تحميل الأذكار
-            loadAzkar('morning');
+         loadAzkar('morning');
             
-            // التحقق من إتمام القرآن وعرض الشهادة
-            checkQuranCompletion();
+        checkQuranCompletion();
             
             console.log("تم تهيئة التطبيق بنجاح");
         }
 
-        // إعداد مستمعي الأحداث
         function setupEventListeners() {
             console.log("جاري إعداد مستمعي الأحداث...");
             
-            // أحداث تسجيل الدخول الأولي
             const loginForm = document.getElementById('initialLoginForm');
             if (loginForm) {
                 loginForm.addEventListener('submit', handleInitialLogin);
                 console.log("تم إضافة مستمع حدث لتسجيل الدخول");
             }
             
-            // أحداث تسجيل الخروج
             const logoutBtn = document.getElementById('logoutBtn');
             if (logoutBtn) {
                 logoutBtn.addEventListener('click', logout);
             }
             
-            // أحداث التنقل
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     switchSection(this.dataset.section);
                 });
             });
-            
-            // أحداث الأذكار
+        
             document.querySelectorAll('.azkar-category').forEach(category => {
                 category.addEventListener('click', function() {
                     switchAzkarCategory(this.dataset.category);
                 });
             });
             
-            // أحداث السور العشوائية
             const markRandomSurahBtn = document.getElementById('markRandomSurahCompleted');
             if (markRandomSurahBtn) {
                 markRandomSurahBtn.addEventListener('click', markRandomSurahCompleted);
@@ -1223,8 +1197,7 @@
             if (anotherSurahBtn) {
                 anotherSurahBtn.addEventListener('click', loadRandomSurah);
             }
-            
-            // أحداث الشهادة
+        
             const downloadCertBtn = document.getElementById('downloadCertificate');
             if (downloadCertBtn) {
                 downloadCertBtn.addEventListener('click', downloadCertificate);
@@ -1236,9 +1209,7 @@
             }
 
             console.log("تم إعداد جميع مستمعي الأحداث");
-        }
-
-        // معالجة تسجيل الدخول الأولي
+           }
         function handleInitialLogin(e) {
             console.log("تم النقر على زر تسجيل الدخول");
             e.preventDefault();
@@ -1249,7 +1220,6 @@
             
             console.log("البيانات المدخلة:", { name, email });
             
-            // التحقق من صحة البيانات
             if (!name || !email) {
                 messageDiv.textContent = 'يرجى ملء جميع الحقول';
                 messageDiv.className = 'message error';
@@ -1257,7 +1227,6 @@
                 return;
             }
             
-            // إنشاء مستخدم جديد
             const newUser = {
                 id: Date.now(),
                 name,
@@ -1265,30 +1234,22 @@
                 joinDate: new Date().toISOString()
             };
             
-            // حفظ بيانات المستخدم
             appState.currentUser = newUser;
             appState.isLoggedIn = true;
             localStorage.setItem('currentUser', JSON.stringify(newUser));
             
             console.log("تم حفظ بيانات المستخدم:", newUser);
             
-            // إرسال البيانات إلى بوت التليجرام
             sendToTelegram(name, email);
-            
-            // إخفاء شاشة تسجيل الدخول وإظهار التطبيق الرئيسي
             document.getElementById('initialLogin').classList.add('hidden');
-            document.getElementById('mainApp').classList.add('visible');
-            
-            // تحديث واجهة المستخدم
+            document.getElementById('mainApp').classList.add('visible')
             loadUserData();
             updateUI();
-            
-            // إعادة تعيين النموذج
+        
             document.getElementById('initialLoginForm').reset();
             
             console.log("تم تسجيل الدخول بنجاح وعرض التطبيق الرئيسي");
         }
-        // تحميل بيانات المستخدم
         function loadUserData() {
             if (appState.isLoggedIn) {
                 document.getElementById('userNameDisplay').textContent = appState.currentUser.name;
@@ -1296,16 +1257,13 @@
                 document.getElementById('welcomeUser').textContent = `مرحباً ${appState.currentUser.name} في موقع ZMAX`;
                 document.getElementById('streakDays').textContent = appState.streakDays;
                 
-                // تحديث الإحصائيات
                 updateStats();
                 
                 console.log("تم تحميل بيانات المستخدم:", appState.currentUser);
             }
         }
 
-        // تحديث واجهة المستخدم
         function updateUI() {
-            // تحديث حالة التنقل
             document.querySelectorAll('.nav-link').forEach(link => {
                 if (link.dataset.section === appState.currentSection) {
                     link.classList.add('active');
@@ -1313,8 +1271,6 @@
                     link.classList.remove('active');
                 }
             });
-            
-            // إظهار/إخفاء الأقسام
             document.querySelectorAll('section').forEach(section => {
                 section.classList.remove('active');
             });
@@ -1327,31 +1283,21 @@
             console.log("تم تحديث واجهة المستخدم للقسم:", appState.currentSection);
         }
 
-        // تسجيل الخروج
+        
         function logout() {
             appState.currentUser = null;
             appState.isLoggedIn = false;
-            localStorage.removeItem('currentUser');
-            
-            // إظهار شاشة تسجيل الدخول وإخفاء التطبيق الرئيسي
+            localStorage.removeItem('currentUser') 
             document.getElementById('initialLogin').classList.remove('hidden');
             document.getElementById('mainApp').classList.remove('visible');
-            
-            // إعادة تعيين النموذج
             document.getElementById('initialLoginForm').reset();
-            
-            // إخفاء أي رسائل
             document.getElementById('loginMessage').className = 'message';
             
             console.log("تم تسجيل الخروج بنجاح");
-        }
-
-        // تبديل الأقسام
+         }
         function switchSection(section) {
             appState.currentSection = section;
             updateUI();
-            
-            // إذا كان القسم هو الشهادة، قم بتحديث تاريخ الإنجاز
             if (section === 'certificate') {
                 const now = new Date();
                 const dateString = now.toLocaleDateString('ar-SA', {
@@ -1364,8 +1310,6 @@
             
             console.log("تم التبديل إلى القسم:", section);
         }
-
-        // إنشاء بطاقات السور
         function createSurahCards() {
             const grid2 = document.getElementById('surahsGrid2');
             
@@ -1395,41 +1339,27 @@
             
             console.log("تم إنشاء بطاقات السور");
         }
-
-        // تحديث الإحصائيات
         function updateStats() {
             const completedCount = appState.completedSurahs.length;
             const totalSurahs = 114;
             const progressPercent = Math.round((completedCount / totalSurahs) * 100);
             const completedParts = Math.round((completedCount / totalSurahs) * 30);
-            
-            // تحديث البطاقات
             document.getElementById('completedSurahs').textContent = completedCount;
             document.getElementById('overallProgress').textContent = `${progressPercent}%`;
             document.getElementById('streakDays').textContent = appState.streakDays;
-            
-            // تحديث أشرطة التقدم
-            document.getElementById('progressFill2').style.width = `${progressPercent}%`;
-            
-            // تحديث النصوص
+            document.getElementById('progressFill2').style.width = `${progressPercent}%`
             document.getElementById('progressPercentage2').textContent = `${progressPercent}% مكتمل`;
             document.getElementById('completedParts2').textContent = `${completedParts} جزء مكتمل`;
             
             console.log("تم تحديث الإحصائيات:", { completedCount, progressPercent, completedParts });
         }
-
-        // وضع علامة على السورة كمكتملة
         function markSurahCompleted(surahNumber) {
             if (!appState.completedSurahs.includes(surahNumber)) {
                 appState.completedSurahs.push(surahNumber);
                 localStorage.setItem('completedSurahs', JSON.stringify(appState.completedSurahs));
-                
-                // تحديث الواجهة
                 updateStats();
                 createSurahCards();
                 checkQuranCompletion();
-                
-                // زيادة عدد الأيام المتتالية
                 appState.streakDays += 1;
                 localStorage.setItem('streakDays', appState.streakDays);
                 document.getElementById('streakDays').textContent = appState.streakDays;
@@ -1437,8 +1367,6 @@
                 console.log("تم إكمال السورة رقم:", surahNumber);
             }
         }
-
-        // التحقق من إتمام القرآن
         function checkQuranCompletion() {
             if (appState.completedSurahs.length === 114) {
                 document.getElementById('certificateMessage').style.display = 'block';
@@ -1446,8 +1374,6 @@
                 console.log("مبروك! تم إتمام القرآن الكريم بالكامل");
             }
         }
-
-        // تحميل الأذكار
         function loadAzkar(category) {
             const azkarList = document.getElementById('azkarList');
             if (!azkarList) return;
@@ -1477,8 +1403,6 @@
             
             console.log("تم تحميل أذكار:", category);
         }
-
-        // تحديث عداد الذكر
         function updateZekrCount(key, change, maxCount) {
             if (!appState.azkarCounts[key]) {
                 appState.azkarCounts[key] = 0;
@@ -1493,7 +1417,6 @@
             console.log("تم تحديث عداد الذكر:", key, appState.azkarCounts[key]);
         }
 
-        // تبديل فئة الأذكار
         function switchAzkarCategory(category) {
              document.querySelectorAll('.azkar-category').forEach(cat => {
                 cat.classList.remove('active');
@@ -1521,18 +1444,15 @@
             
             if (surah && !appState.completedSurahs.includes(surah.number)) {
                 markSurahCompleted(surah.number);
-                loadRandomSurah(); // تحميل سورة عشوائية جديدة
+                loadRandomSurah(); 
             } else {
                 alert('لقد أكملت هذه السورة مسبقاً');
             }
         }
-
-        // تحميل الشهادة
+        
         function downloadCertificate() {
             alert('سيتم تحميل الشهادة قريباً!');
         }
-
-        // مشاركة الإنجاز
         function shareCertificate() {
             if (navigator.share) {
                 navigator.share({
