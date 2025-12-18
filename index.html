@@ -936,9 +936,7 @@ m">
             { number: 75, name: "القيامة", verses: 40, place: "مكة" },
             { number: 76, name: "الإنسان", verses: 31, place: "المدينة" },
             { number: 77, name: "المرسلات", verses: 50, place: "مكة" },
-            { number: 78, name: "النبأ", verses: 40, place: "مكة" },
-            { number: 79, name: "النازعات", verses: 46, place: "مكة" },
-            { number: 80, name: "عبس", verses: 42, place: "مكة" },
+            { number: 78, name: "ال80, name: "عبس", verses: 42, place: "مكة" },
             { number: 81, name: "التكوير", verses: 29, place: "مكة" },
             { number: 82, name: "الانفطار", verses: 19, place: "مكة" },
             { number: 83, name: "المطففين", verses: 36, place: "مكة" },
@@ -946,43 +944,16 @@ m">
             { number: 85, name: "البروج", verses: 22, place: "مكة" },
             { number: 86, name: "الطارق", verses: 17, place: "مكة" },
             { number: 87, name: "الأعلى", verses: 19, place: "مكة" },
-            { number: 88, name: "الغاشية", verses: 26, place: "مكة" },
+            { number: 88, name: "الغ, verses: 26, place: "مكة" },
             { number: 89, name: "الفجر", verses: 30, place: "مكة" },
-            { number: 90, name: "البلد", verses: 20, place: "مكة" },
-            { number: 91, name: "الشمس", verses: 15, place: "مكة" },
-            { number: 92, name: "الليل", verses: 21, place: "مكة" },
-            { number: 93, name: "الضحى", verses: 11, place: "مكة" },
+            { n: 20, place: "مكة" },
+            { number:: 21, place: "مكة" },
+            { number: 93, nerses: 11, place: "مكة" },
             { number: 94, name: "الشرح", verses: 8, place: "مكة" },
             { number: 95, name: "التين", verses: 8, place: "مكة" },
             { number: 96, name: "العلق", verses: 19, place: "مكة" },
             { number: 97, name: "القدر", verses: 5, place: "مكة" },
-            { number: 98, name: "البينة", verses: 8, place: "المدينة" },
-            { number: 99, name: "الزلزلة", verses: 8, place: "المدينة" },
-            { number: 100, name: "العاديات", verses: 11, place: "مكة" },
-            { number: 101, name: "القارعة", verses: 11, place: "مكة" },
-            { number: 102, name: "التكاثر", verses: 8, place: "مكة" },
-            { number: 103, name: "العصر", verses: 3, place: "مكة" },
-            { number: 104, name: "الهمزة", verses: 9, place: "مكة" },
-            { number: 105, name: "الفيل", verses: 5, place: "مكة" },
-            { number: 106, name: "قريش", verses: 4, place: "مكة" },
-            { number: 107, name: "الماعون", verses: 7, place: "مكة" },
-            { number: 108, name: "الكوثر", verses: 3, place: "مكة" },
-            { number: 109, name: "الكافرون", verses: 6, place: "مكة" },
-            { number: 110, name: "النصر", verses: 3, place: "المدينة" },
-            { number: 111, name: "المسد", verses: 5, place: "مكة" },
-            { number: 112, name: "الإخلاص", verses: 4, place: "مكة" },
-            { number: 113, name: "الفلق", verses: 5, place: "مكة" },
-            { number: 114, name: "الناس", verses: 6, place: "مكة" }
-        ];
-
-        const azkar = {
-            morning: [
-                { text: "أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ", count: 1 },
-                { text: "اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ...", count: 1 },
-                { text: "بِسْمِ اللَّهِ الَّذِي لاَ يَضُرُّ مَعَ اسْمِهِ شَيْءٌ...", count: 3 },
-                { text: "رَضِيتُ بِاللَّهِ رَبًّا...", count: 3 },
-                { text: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ", count: 100 }
-            ],
+            { number: 98, name: "البينة", verses: 
             evening: [
                 { text: "أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ", count: 1 },
                 { text: "آمَنَ الرَّسُولُ بِمَا أُنْزِلَ إِلَيْهِ...", count: 1 },
@@ -1022,9 +993,7 @@ m">
             console.log("جاري تهيئة التطبيق...");
             
             const savedUser = localStorage.getItem('currentUser');
-            const savedSurahs = localStorage.getItem('completedSurahs');
-            const savedAzkar = localStorage.getItem('azkarCounts');
-            const savedStreak = localStorage.getItem('streakDays');
+    akDays');
             
             if (savedUser) {
                 appState.currentUser = JSON.parse(savedUser);
@@ -1172,19 +1141,7 @@ m">
             
             const currentSection = document.getElementById(`${appState.currentSection}Section`);
             if (currentSection) {
-                currentSection.classList.add('active');
-            }
-            
-            console.log("تم تحديث واجهة المستخدم للقسم:", appState.currentSection);
-        }
-
-        
-        function logout() {
-            appState.currentUser = null;
-            appState.isLoggedIn = false;
-            localStorage.removeItem('currentUser') 
-            document.getElementById('initialLogin').classList.remove('hidden');
-            document.getElementById('mainApp').classList.remove('visible');
+                currentSection.clayId('mainApp').classList.remove('visible');
             document.getElementById('initialLoginForm').reset();
             document.getElementById('loginMessage').className = 'message';
             
@@ -1267,8 +1224,7 @@ m">
                 console.log("مبروك! تم إتمام القرآن الكريم بالكامل");
             }
         }
-        function loadAzkar(category) {
-            const azkarList = document.getElementById('azkarList');
+        function loadAzkar(category) {   const azkarList = document.getElementById('azkarList');
             if (!azkarList) return;
             
             azkarList.innerHTML = '';
@@ -1291,63 +1247,4 @@ m">
             
             console.log("تم تحميل أذكار:", category);
         }
-        function updateZekrCount(key, change, maxCount) {
-            if (!appState.azkarCounts[key]) {
-                appState.azkarCounts[key] = 0;
-            }
-            
-            appState.azkarCounts[key] = Math.max(0, Math.min(appState.azkarCounts[key] + change, maxCount));
-            
-            localStorage.setItem('azkarCounts', JSON.stringify(appState.azkarCounts));
-            
-            document.getElementById(`count-${key}`).textContent = `${appState.azkarCounts[key]}/${maxCount}`;
-            
-            console.log("تم تحديث عداد الذكر:", key, appState.azkarCounts[key]);
-        }
-
-        function switchAzkarCategory(category) {
-             document.querySelectorAll('.azkar-category').forEach(cat => {
-                cat.classList.remove('active');
-            });
-            
-            document.querySelector(`[data-category="${category}"]`).classList.add('active');
-            
-        loadAzkar(category);
-        }
-
-        function loadR = Math.floor(Math.random() * allSurahs.length);
-            const randomSurah = allSurahs[randomIndex];
-            
-            document.getElementById('randomSurahName').textContent = randomSurah.name;
-            document.getElementById('randomSurahVerses').textContent = randomSurah.verses;
-            document.getElementById('randomSurahPlace').textContent = randomSurah.place;
-            
-            console.log("تم تحميل سورة عشوائية:", randomSurah.name);
-        }
-
-        function markRandomSurahCompleted() {
-            const surahName = document.getElementById('randomSurahName').textContent;
-            const surah = allSurahs.find(s => s.name === surahName);
-            
-            if (surah && !appState.completedSurahs.includes(surah.number)) {
-                markSurahCompleted(surah.number);
-                loadRandomSurah(); 
-            } else {
-                alert('لقد أكملت هذه السورة مسبقاً');
-            }
-        }
-        
-        function downloadCertificate() {
-            alert('سيتم تحميل الشهادة قريباً!');
-        }
-        function shareCertificate() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'شهادة إتمام القرآن الكريم',
-                    text: `لقد أتممت تلاوة القرآن الكريم كاملاً على موقع ZMAX!`,
-                    url: window.location.href
-                })
-                .then(() => console.log('تمت المشاركة بنجاح'))
-                .catch((error) => console.log('خطأ في المشاركة:', error));
-            } else {
-                alert('مشاركة الإنجا
+        function updateZekrCount(key, c
