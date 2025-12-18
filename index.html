@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZMAX - موقع تختيم القرآن الكريم</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <style>
+ref="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet"
         :root {
             --primary-color: #1a5e3f;
             --secondary-color: #2d8a5c;
@@ -15,14 +7,7 @@
             --dark-color: #0d2e1f;
             --text-color: #333;
             --light-text: #fff;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            --shadow: 0 4px            box-sizing: border-box;
         }
 
         body {
@@ -74,68 +59,7 @@
 
         .login-header h2 {
             color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            font-family: 'Scheherazade New', serif;
-            font-size: 1.8rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.2rem;
-            text-align: right;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.4rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            font-size: 0.9rem;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Tajawal', sans-serif;
-            font-size: 0.95rem;
-            transition: var(--transition);
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 0 2px rgba(45, 138, 92, 0.2);
-        }
-
-        .btn {
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: 'Tajawal', sans-serif;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background-color: var(--accent-color);
-            color: var(--dark-color);
-        }
-
-        .btn-primary:hover {
-            background-color: #e6c44c;
-        }
-
-        .message {
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            text-align: center;
-            font-weight: bold;
-        }
-
+            margin-bottom
         .message.success {
             background-color: #d4edda;
             color: #155724;
@@ -750,36 +674,9 @@
             padding: 0.8rem;
             background-color: white;
             border-radius: 12px;
-            box-shadow: var(--shadow);
-        }
-    </style>
-</head>
-<body>
-    <div class="initial-login" id="initialLogin">
-        <div class="login-container">
-            <div class="login-header">
-                <h2>مرحباً بك في ZMAX</h2>
-                <p>سجل بياناتك للبدء في رحلة تلاوة القرآن الكريم</p>
-            </div>
-            
-            <form id="initialLoginForm">
-                <div class="message" id="loginMessage"></div>
-                
-                <div class="form-group">
-                    <label for="userName">الاسم الكامل</label>
-                    <input type="text" id="userName" placeholder="أدخل اسمك الكامل">
-                </div>
-                <div class="form-group">
-                    <label for="userEmail">البريد الإلكتروني</label>
-                    <input type="email" id="userEmail" placeholder="أدخل بريدك الإلكتروني">
-                </div>
-                <button type="submit" class="btn btn-primary" id="submitBtn">بدء الرحلة القرآنية</button>
-            </form>
-        </div>
-    </div>
-
-    
-    <div class="main-app" id="mainApp">
+            box-lass="initial-login" id="initialLogin">
+m">
+            clasessage" id="logi class="fo
         <!-- Header -->
         <header>
             <div class="container">
@@ -960,9 +857,7 @@
                </div>
             </div>
         </footer>
-    </div>
-
-    <script>
+    <
         const allSurahs = [
             { number: 1, name: "الفاتحة", verses: 7, place: "مكة" },
             { number: 2, name: "البقرة", verses: 286, place: "المدينة" },
@@ -1326,9 +1221,7 @@
                 card.dataset.surah = surah.number;
                 
                 card.innerHTML = `
-                    <div class="surah-number">${surah.number}</div>
-                    <div class="surah-name">${surah.name}</div>
-                `;
+        
                 
                 card.addEventListener('click', () => {
                     markSurahCompleted(surah.number);
@@ -1390,13 +1283,8 @@
                 const currentCount = appState.azkarCounts[zekrKey] || 0;
                 
                 zekrItem.innerHTML = `
-                    <div class="zekr-text">${zekr.text}</div>
-                    <div class="zekr-count">
-                        <button class="count-btn" onclick="updateZekrCount('${zekrKey}', -1, ${zekr.count})">-</button>
-                        <span class="count-display" id="count-${zekrKey}">${currentCount}/${zekr.count}</span>
-                        <button class="count-btn" onclick="updateZekrCount('${zekrKey}', 1, ${zekr.count})">+</button>
-                    </div>
-                `;
+                ss="zekr-count">
+        
                 
                 azkarList.appendChild(zekrItem);
             });
@@ -1427,8 +1315,7 @@
         loadAzkar(category);
         }
 
-        function loadRandomSurah() {
-            const randomIndex = Math.floor(Math.random() * allSurahs.length);
+        function loadR = Math.floor(Math.random() * allSurahs.length);
             const randomSurah = allSurahs[randomIndex];
             
             document.getElementById('randomSurahName').textContent = randomSurah.name;
@@ -1463,9 +1350,4 @@
                 .then(() => console.log('تمت المشاركة بنجاح'))
                 .catch((error) => console.log('خطأ في المشاركة:', error));
             } else {
-                alert('مشاركة الإنجاز: لقد أتممت تلاوة القرآن الكريم كاملاً!');
-            }
-        }
-    </script>
-</body>
-</html>
+                alert('مشاركة الإنجا
