@@ -1,604 +1,384 @@
-
-<!-- هذا تعليق في HTML --ج
-        .dashboard-section.active,
-        .quran-section.active,
-        .azkar-section.active,
-        .certificate-section.active {
-            display: block;
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خاتم القرآن الكريم</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri&family=Cairo:wght@400;700&display=swap');
+        
+        body { 
+            font-family: 'Cairo', sans-serif; 
+            background: linear-gradient(to bottom, #e0f7fa, #ffffff); 
+            color: #1e3a5f; 
+            margin: 0; 
+            padding: 0; 
+            text-align: center; 
         }
-
-        .welcome-message {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            box-shadow: var(--shadow);
+        header { 
+            background: #004d40; 
+            color: #fff; 
+            padding: 30px; 
+            font-family: 'Amiri', serif; 
         }
-
-        .welcome-message h2 {
-            font-family: 'Scheherazade New', serif;
-            margin-bottom: 0.6rem;
-            font-size: 1.5rem;
+        h1 { font-size: 36px; margin: 0; }
+        h2 { color: #004d40; margin-top: 30px; }
+        .container { max-width: 900px; margin: 20px auto; padding: 20px; background: #fff; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .progress-bar { 
+            height: 35px; 
+            background: #e0e0e0; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            margin: 30px 0; 
+            position: relative;
         }
-
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1.2rem;
-            margin-bottom: 1.5rem;
+        .progress-fill { 
+            height: 100%; 
+            background: linear-gradient(to right, #004d40, #00796b); 
+            width: 0%; 
+            transition: width 1.5s ease; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: white; 
+            font-weight: bold; 
+            font-size: 18px;
         }
-
-        .stat-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 1.2rem;
-            box-shadow: var(--shadow);
-            text-align: center;
-            border-top: 3px solid var(--accent-color);
+        button { 
+            padding: 14px 30px; 
+            font-size: 18px; 
+            background: #00796b; 
+            color: white; 
+            border: none; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            margin: 15px; 
+            transition: 0.3s; 
         }
+        button:hover { background: #004d40; transform: scale(1.05); }
+        .section { margin: 50px 0; padding: 30px; background: #f1f8e9; border-radius: 15px; }
+        .azkar-list { text-align: right; line-height: 2.5; font-size: 22px; direction: rtl; }
+        p.big { font-size: 28px; font-family: 'Amiri', serif; color: #004d40; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>خاتم القرآن الكريم 🕌</h1>
+        <p>تابع تقدمك في ختم القرآن وحافظ على تلاوتك اليومية</p>
+    </header>
 
-        .stat-card i {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 0.8rem;
-        }
-
-        .stat-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.4rem;
-            font-size: 1rem;
-        }
-
-        .stat-card p {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--secondary-color);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .section-title h2 {
-            font-size: 1.6rem;
-            color: var(--primary-color);
-            padding-bottom: 8px;
-            font-family: 'Scheherazade New', serif;
-        }
-
-        .progress-bar {
-            height: 16px;
-            background-color: #e0e0e0;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 0.8rem;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
-            border-radius: 8px;
-            transition: width 0.5s ease;
-        }
-
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-top: 0.4rem;
-            font-size: 0.9rem;
-        }
-
-        .surahs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-            gap: 0.8rem;
-            margin-top: 1.5rem;
-        }
-
-        .surah-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 0.8rem;
-            text-align: center;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
-            cursor: pointer;
-            border: 1px solid #eaeaea;
-            transition: var(--transition);
-        }
-
-        .surah-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .surah-card.completed {
-            background-color: var(--secondary-color);
-            color: white;
-        }
-
-        .surah-number {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 0.4rem;
-            color: var(--primary-color);
-        }
-
-        .surah-card.completed .surah-number {
-            color: white;
-        }
-
-        .surah-name {
-            font-weight: 600;
-            font-family: 'Scheherazade New', serif;
-            font-size: 0.9rem;
-        }
-
-        .azkar-categories {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .azkar-category {
-            background-color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 40px;
-            cursor: pointer;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
-            font-weight: 600;
-            color: var(--primary-color);
-            font-family: 'Tajawal', sans-serif;
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
-
-        .azkar-category.active {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .azkar-list {
-            background-color: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            max-height: 450px;
-            overflow-y: auto;
-        }
-
-        .zekr-item {
-            padding: 1.2rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .zekr-item:last-child {
-            border-bottom: none;
-        }
-
-        .zekr-text {
-            font-size: 1rem;
-            line-height: 1.7;
-            margin-bottom: 0.8rem;
-            text-align: center;
-            font-family: 'Amiri', serif;
-        }
-
-        .zekr-count {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-        }
-
-        .count-btn {
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            font-weight: bold;
-            cursor: pointer;
-            font-family: 'Tajawal', sans-serif;
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
-
-        .count-btn:hover {
-            background-color: var(--primary-color);
-        }
-
-        .count-display {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            min-width: 35px;
-            text-align: center;
-        }
-
-        .certificate-preview {
-            background-color: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            text-align: center;
-            margin-top: 1.5rem;
-            border: 8px solid var(--accent-color);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .certificate-header h3 {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            margin-bottom: 0.8rem;
-            font-family: 'Scheherazade New', serif;
-        }
-
-        .bismillah {
-            font-size: 1.4rem;
-            color: var(--secondary-color);
-            margin-bottom: 0.8rem;
-            font-family: 'Scheherazade New', serif;
-        }
-
-        .user-info {
-            margin: 1.5rem 0;
-        }
-
-        .user-name {
-            font-size: 1.6rem;
-            color: var(--primary-color);
-            margin-bottom: 0.4rem;
-            font-family: 'Scheherazade New', serif;
-        }
-
-        .completion-date {
-            color: var(--secondary-color);
-            font-weight: 600;
-            font-family: 'Tajawal', sans-serif;
-            font-size: 0.9rem;
-        }
-
-        .certificate-actions {
-            margin-top: 1.5rem;
-            display: flex;
-            justify-content: center;
-            gap: 0.8rem;
-        }
-
-        footer {
-            background-color: var(--dark-color);
-            color: var(--light-text);
-            padding: 1.5rem 0 1rem;
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 1rem;
-            color: #aaa;
-            font-size: 0.8rem;
-            font-family: 'Tajawal', sans-serif;
-        }
-
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 0.8rem;
-            }
-
-            nav ul {
-                gap: 0.6rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .surahs-grid {
-                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            }
-
-            .user-info {
-                flex-direction: column;
-                gap: 0.4rem;
-            }
-
-            .azkar-categories {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .azkar-category {
-                width: 100%;
-                text-align: center;
-            }
-
-            .certificate-preview {
-                padding: 1.5rem;
-            }
-
-            .certificate-actions {
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .login-container {
-                padding: 1.5rem 1.2rem;
-            }
-
-            .surahs-grid {
-                grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-            }
-
-            .stats-container {
-                grid-template-columns: 1fr;
-            }
-
-            .certificate-preview {
-                padding: 1.2rem;
-            }
-
-            .certificate-header h3 {
-                font-size: 1.5rem;
-            }
-
-            .user-name {
-                font-size: 1.3rem;
-            }
-
-
-            header {
-                padding: 0.4rem 0;
-            }
-
-            .logo h1 {
-                font-size: 1.2rem;
-            }
-
-            .logo i {
-                font-size: 1.4rem;
-            }
-
-            nav a {
-                padding: 0.3rem 0.6rem;
-                font-size: 0.8rem;
-            }
-
-            .user-name {
-                font-size: 0.8rem;
-            }
-
-            .btn-outline {
-                padding: 0.3rem 0.6rem;
-                font-size: 0.8rem;
-            }
-        }
-
-        .completion-message {
-      <!-- هذا تعليق في HTML --  background: linear-gradient(135deg, var(--accent-color), #f8e6a3);
-            color: var(--dark-color);
-            padding: 1.2rem;
-            border-radius: 8px;
-            text-align: center;
-            margin: 1.5rem 0;
-            font-weight: bold
-        <!-- Header --
-> 
-            <div class="container">
-                <div class="header-content">
-                    <div class="logo">
-                        <i class="fas fa-quran"></i>
-                        <h1>ZMAX</h1>
-                    </div>
-                    <nav>
-                        <ul>
-                            <li><a href="#" class="nav-link active" data-section="dashboard">الرئيسية</a></li>
-                            <li><a href="#" class="nav-link" data-section="quran">تتبع التلاوة</a></li>
-                            <li><a href="#" class="nav-link" data-section="azkar">الأذكار</a></li>
-                            <li><a href="#" class="nav-link certificate-nav" data-section="certificate" style="display: none;">الشهادة</a></li>
-                        </ul>
-                    </nav>
-                    <div class="user-info">
-                        <span class="user-name" id="userNameDisplay">أحمد محمد</span>
-                        <button class="btn btn-outline" id="logoutBtn">تسجيل الخروج</button>
-                    </div>
-                </div>
+    <div class="container">
+        <div class="section">
+            <h2>تقدم ختمتك الحالية</h2>
+            <p>أكملت <span id="completed">0</span> من 114 سورة</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill">0%</div>
             </div>
-        </header>
+        </div>
 
- <div class="main-content">
-         <section class="dashboard-section active" id="dashboardSection">
-                <div class="container">
-                    <div class="welcome-message">
-                        <h2 id="welcomeUser">مرحباً بك في موقع ZMAX</h2>
-                        <p>نتمنى لك رحلة قرآنية مثمرة معنا</p>
-                    </div>
-                    
-                    <div class="stats-container">
-                        <div class="stat-card">
-                            <i class="fas fa-book-open"></i>
-                            <h3>السور المكتملة</h3>
-                            <p id="completedSurahs">0</p>
-                        </div>
-                        <div class="stat-card">
-                            <i class="fas fa-praying-hands"></i>
-                            <h3>الأذكار اليومية</h3>
-                            <p id="azkarCount">0</p>
-                        </div>
-                        <div class="stat-card">
-                            <i class="fas fa-trophy"></i>
-                            <h3>التقدم العام</h3>
-                            <p id="overallProgress">0%</p>
-                        </div>
-                        <div class="stat-card">
-                            <i class="fas fa-fire"></i>
-                            <h3>الأيام المتتالية</h3>
-                            <p id="streakDays">0</p>
-                        </div>
-                    </div>
-                    
-                    <div class="section-title">
-                        <h2>آية اليوم</h2>
-                    </div>
-                    
-                    <div class="daily-verse-card">
-                        <div class="daily-verse" id="dailyVerse">
-                            "يَا أَيُّهَا الَّذِينَ آمَنُوا اصْبِرُوا وَصَابِرُوا وَرَابِطُوا وَاتَّقُوا اللَّهَ لَعَلَّكُمْ تُفْلِحُونَ"
-                        </div>
-                        <div class="verse-explanation">
-                            <p>يدعو الله تعالى المؤمنين إلى الصبر في طاعته، والصبر عن معصيته، والصبر على أقداره، والمصابرة مع الأعداء في الجهاد، والمرابطة في الثغور، وتقوى الله في السر والعلن، لعلهم يفوزون بالفلاح في الدنيا والآخرة.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="section-title">
-                        <h2>سورة عشوائية للقراءة</h2>
-                    </div>
-                    
-                    <div class="random-surah-card">
-                        <div class="random-surah-name" id="randomSurahName">الفاتحة</div>
-                        <div class="random-surah-details">
-                            <div class="random-surah-detail">
-                                <h4>عدد الآيات</h4>
-                                <p id="randomSurahVerses">7</p>
-                            </div>
-                            <div class="random-surah-detail">
-                                <h4>مكان النزول</h4>
-                                <p id="randomSurahPlace">مكة</p>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary" id="markRandomSurahCompleted">تمت القراءة</button>
-                        <button class="btn btn-outline" id="anotherSurah">اقتراح سورة أخرى</button>
-                    </div>
-                </div>
-            </section>
+        <div class="section">
+            <h2>سورة اليوم</h2>
+            <p class="big" id="daily-surah">اضغط الزر لاقتراح سورة جديدة</p>
+            <button onclick="suggestDailySurah()">اقتراح سورة عشوائية</button>
+            <button onclick="markSurahComplete()">تمت قراءتها اليوم</button>
+        </div>
 
-       <section class="quran-section" id="quranSection">
-                <div class="container">
-                    <div class="section-title">
-                        <h2>تتبع تلاوة القرآن الكريم</h2>
-                    </div>
-                    
-                    <div class="progress-container">
-                        <div class="progress-header">
-                            <h3>تقدمك في القرآن الكريم</h3>
-                            <span id="progressPercentage2">0% مكتمل</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="progressFill2" style="width: 0%"></div>
-                        </div>
-                        <div class="progress-info">
-                            <span id="completedParts2">0 جزء مكتمل</span>
-                            <span>30 جزء كامل</span>
-                        </div>
-                    </div>
-                    
-                    <div class="section-title">
-                        <h2>جميع سور القرآن الكريم (114 سورة)</h2>
-                    </div>
-                    
-                    <div class="surahs-container">
-                        <div class="surahs-grid" id="surahsGrid2">
-                            <!-- سيتم إنشاء هذه البطاقات ديناميكيًا باستخدام JavaScript -->
-                        </div> 
+        <div class="section">
+            <h2>آية اليوم</h2>
+            <p class="big" id="daily-ayah">اضغط لعرض آية جديدة</p>
+            <p id="ayah-tafsir" style="font-style:italic; font-size:20px; margin-top:20px;"></p>
+            <button onclick="showDailyAyah()">عرض آية عشوائية مع تفسير</button>
+        </div>
 
-            <!-- Certificate Section --
+        <div class="section">
+            <h2>أذكار يومية</h2>
+            <button onclick="showAzkar('morning')">أذكار الصباح</button>
+            <button onclick="showAzkar('evening')">أذكار المساء</button>
+            <button onclick="showAzkar('sleep')">أذكار النوم</button>
+            <div id="azkar-display" class="azkar-list"></div>
+        </div>
+    </div>
 
-            <section class="certificate-section" id="certificateSection">
-                <div class="container">
-                    <div id="certificateMessage" class="completion-message" style="display: none;">
-                        <p>مبروك! لقد أتممت تلاوة القرآن الكريم كاملاً. يمكنك الآن عرض شهادتك.</p>
-                    </div>
-                    
-                    <div class="certificate-preview">
-                        <div class="certificate-header">
-                            <h3>شهادة إتمام تلاوة القرآن الكريم</h3>
-                            <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
-                        </div>
-                        
-                        <div class="user-info">
-                            <div class="user-name" id="certificateUserName">أحمد محمد</div>
-                            <div class="completion-date" id="completionDate">تم الإنجاز في: 15 رمضان 1444 هـ</div>
-                        </div>
-                        
-                        <p>تهنئة! لقد أتممت تلاوة القرآن الكريم كاملًا بنجاح. نسأل الله أن يتقبل منا ومنك صالح الأعمال.</p>
-                        
-                        <div class="certificate-footer">
-                            <p>موقع ZMAX للقرآن الكريم والأذكار</p>
-                        </div>
-                        
-                        <div class="btn btn-primary" id="downloadCertificate">تحميل الشهادة</button>
-                            <button class="btn btn-outline" id="shareCertificate">مشاركة الإنجاز</button>
-                        <!__/number: 2, name: "البقرة", verber: 4, name: "النساء", verses: 176, place: "المدينة" },
-            { number: 5, n
-            { number: 7, name: "الأعراف", verses: 206, place: "مكة" },
-            { number: 8, name: "الأنفال", verses: 75, place: "المدينة" },
-            { number: 9, name: "التوبة", verses: 129, place: "المدينة" },
-            { number: 10, name: "يونس", verses: 109, place: "مكة" },
-            { number: 11, name: "هود", verses: 123, place: "مكة" },
-            { number: 12, name: "يوسف", verses: 111, place: "مكة" },
-            { number: 13, name: "الرعد", verses: 43, place: "المدينة" },
-            { number: 14, name: "إبراهيم", verses: 52, place: "مكة" },
-            { number: 15, name: "الحجر", verses: 99, place: "مكة" },
-            { number: 16, name: "النحل", verses: 128, place: "مكة" },
-            { number: 17, name: "الإسراء", verses: 111, place: "مكة" },
-            { number: 18, name: "الكهف", verses: 110, place: "مكة" },
-            { number: 19, name: "مريم", verses: 98, place: "مكة" },
-            { number: 20, name: "طه", verses: 135, place: "مكة" },
-            { number: 21, name: "الأنبياء", verses: 112, place: "مكة" },
-            { number: 22, name: "الحج", verses: 78, place: "المدينة" },
-            { number: 23, name: "المؤمنون", verses: 118, place: "مكة" },
-            { number: 24, name: "النور", verses: 64, place: "المدينة" },
-            { number: 25, name: "الفرقان", verses: 77, place: "مكة" },
-            { number: 26, name: "الشعراء", verses: 227, place: "مكة" },
-            { number: 27, name: "النمل", verses: 93, place: "مكة" },
-            { number: 28, name: "القصص", verses: 88, place: "مكة" },
-            { number: 29, name: "العنكبوت", verses: 69, place: "مكة" },
-            { number: 30, name: "الروم", verses: 60, place: "مكة" },
-            { number: 31, name: "لقمان", verses: 34, place: "مكة" },
-            { number: 32, name: "السجدة", verses: 30, place: "مكة" },
-            { number: 33, name: "الأحزاب", verses: 73, place: "المدينة" },
-            { number: 34, name: "سبأ", verses: 54, place: "مكة" },
-            { number: 35, name: "فاطر", verses: 45, place: "مكة" },
-            { number: 36, name: "يس", verses: 83, place: "مكة" },
-            { number: 37, name: "الصافات", verses: 182, place: "مكة" },
-            { number: 38, name: "ص", verses: 88, place: "مكة" },
-            { number: 39, name: "الزمر", verses: 75, place: "مكة" },
-            { number: 40, name: "غافر", verses: 85, place: "مكة" },
-            { number: 41, name: "فصلت", verses: 54, place: "مكة" },
-            { number: 42, name: "الشورى", verses: 53, place: "مكة" },
-            { number: 43, name: "الزخرف", verses: 89, place: "مكة" },
-            { number: 44, name: "الدخان", verses: 59, place: "مكة" },
-            { number: 45, name: "الجاثية", verses: 37, place: "مكة" },
-            { number: 46, name: "الأحقاف", verses: 35, place: "مكة" },
-            { number: 47, name: "محمد", verses: 38, place: "المدينة" },
-            { number: 48, name: "الفتح", verses: 29, place: "المدينة" },
-            { number: 49, name: "الحجرات", verses: 18, place: "المدينة" },
-            { number: 50, name: "ق", verses: 45, place: "مكة" },
-            { number: 51, name: "الذاريات", verses: 60, place: "مكة" },
-            { number: 52, name: "الطور", verses: 49, place: "مكة" },
-            { number: 53, name: "النجم", verses: 62, place: "مكة" },
-            { number: 54, name: "القمر", verses: 55, place: "مكة" },
-            { number: 55, name: "الرحمن", verses: 78, place: "المدينة" },
-            { number: 56, name: "الواقعة", verses: 96, place: "مكة" },
-            { number: 57, name: "الحديد", verses: 29, place: "المدينة" },
-            { number: 58, name: "المجادلة", verses: 22, place: "المدينة" },
-            { number: 59, name: "الحشر", verses: 24, place: "المدينة" },
-            { number: 60, name: "الممتحنة", verses: 13, place: "المدينة" },
-            { number: 61, name: "الصف", verses: 14, place: "المدينة" },
-            { number: 62, name: "الجمعة", verses: 11, place: "المدينة" },
-            { number: 63, name: "المنافقون", verses: 11, place: "المدينة" },
-            { number: 64, name: "التغابن", verses: 18, place: "المدينة" },
-            { number: 65, name: "الطلاق", verses: 12, place: "المدينة" },
-            { number: 66, name: "التحريم", verses: 12, place: "المدينة" },
-            { number: 67, name: "الملك", verses: 30, place: "مكة" },
-            { number: 68, name: "القلم", verses: 52, place: "مكة" },
-            { number: 69, name: "الحاقة", verses: 52, place: "مكة" },
-            { number: 70, name: "المعارج", verses: 44, place: "مكة" },
-            {
+    <script>
+        const surahs = [
+            "الفاتحة", "البقرة", "آل عمران", "النساء", "المائدة", "الأنعام", "الأعراف", "الأنفال", "التوبة", "يونس",
+            "هود", "يوسف", "الرعد", "إبراهيم", "الحجر", "النحل", "الإسراء", "الكهف", "مريم", "طه",
+            "الأنبياء", "الحج", "المؤمنون", "النور", "الفرقان", "الشعراء", "النمل", "القصص", "العنكبوت", "الروم",
+            "لقمان", "السجدة", "الأحزاب", "سبأ", "فاطر", "يس", "الصافات", "ص", "الزمر", "غافر",
+            "فصلت", "الشورى", "الزخرف", "الدخان", "الجاثية", "الأحقاف", "محمد", "الفتح", "الحجرات", "ق",
+            "الذاريات", "الطور", "النجم", "القمر", "الرحمن", "الواقعة", "الحديد", "المجادلة", "الحشر", "الممتحنة",
+            "الصف", "الجمعة", "المنافقون", "التغابن", "الطلاق", "التحريم", "الملك", "القلم", "الحاقة", "المعارج",
+            "نوح", "الجن", "المزمل", "المدثر", "القيامة", "الإنسان", "المرسلات", "النبأ", "النازعات", "عبس",
+            "التكوير", "الانفطار", "المطففين", "الانشقاق", "البروج", "الطارق", "الأعلى", "الغاشية", "الفجر", "البلد",
+            "الشمس", "الليل", "الضحى", "الشرح", "التين", "العلق", "القدر", "البينة", "الزلزلة", "العاديات",
+            "القارعة", "التكاثر", "العصر", "الهمزة", "الفيل", "قريش", "الماعون", "الكوثر", "الكافرون", "النصر",
+            "المسد", "الإخلاص", "الفلق", "الناس"
+        ];
+
+        const ayahs = [
+            {ayah: "إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ ۚ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا", tafsir: "سورة الأحزاب - أمر الله تعالى المؤمنين بالصلاة والسلام على النبي محمد صلى الله عليه وسلم."},
+            {ayah: "وَمَنْ يَتَّقِ اللَّهَ يَجْعَلْ لَهُ مَخْرَجًا ۝ وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ", tafsir: "سورة الطلاق - من يتق الله ييسر له الأمور ويرزقه من حيث لا يحتسب."},
+            {ayah: "فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ", tafsir: "سورة البقرة - اذكروا الله يذكركم، واشكروه على نعمه."},
+            {ayah: "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا", tafsir: "سورة البقرة - الله لا يكلف نفسًا إلا بما تستطيع."},
+            {ayah: "إِنَّ مَعَ الْعُسْرِ يُسْرًا", tafsir: "سورة الشرح - مع كل شدة فرج ويسر."}
+        ];
+
+        const azkar = {
+            morning: [
+                "أصبحنا وأصبح الملك لله والحمد لله، لا إله إلا الله وحده لا شريك له...",
+                "اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت وإليك النشور",
+                "آية الكرسي (ثلاث مرات)",
+                "سورة الإخلاص والمعوذتين (ثلاث مرات كل واحدة)",
+                "سبحان الله وبحمده عدد خلقه ورضا نفسه وزِنَة عرشه ومداد كلماته (ثلاث مرات)"
+            ],
+            evening: [
+                "أمسينا وأمسى الملك لله والحمد لله، لا إله إلا الله وحده لا شريك له...",
+                "اللهم بك أمسينا وبك أصبحنا وبك نحيا وبك نموت وإليك المصير",
+                "آية الكرسي (ثلاث مرات)",
+                "سورة الإخلاص والمعوذتين (ثلاث مرات كل واحدة)"
+            ],
+            sleep: [
+                "باسمك اللهم أموت وأحيا",
+                "آية الكرسي",
+                "سورة الإخلاص والفلق والناس (ثلاث مرات)",
+                "اللهم قني عذابك يوم تبعث عبادك (ثلاث مرات)"
+            ]
+        };
+
+        let completed = parseInt(localStorage.getItem('quranCompleted') || '0');
+
+        function updateProgress() {
+            const percent = Math.round((completed / 114) * 100);
+            document.getElementById('completed').textContent = completed;
+            document.getElementById('progress-fill').style.width = percent + '%';
+            document.getElementById('progress-fill').textContent = percent + '%';
+        }
+
+        function suggestDailySurah() {
+            const random = surahs[Math.floor(Math.random() * surahs.length)];
+            document.getElementById('daily-surah').textContent = random;
+        }
+
+        function markSurahComplete() {
+            if (completed < 114) {
+                completed++;
+                localStorage.setItem('quranCompleted', completed);
+                updateProgress();
+                alert('مبروك! سورة مكتملة بنجاح 🌟');
+                if (completed === 114) {
+                    alert('تهانينا الحارة! لقد أكملت ختم القرآن الكريم 🏆');
+                }
+            }
+        }
+
+        function showDailyAyah() {
+            const randomAyah = ayahs[Math.floor(Math.random() * ayahs.length)];
+            document.getElementById('daily-ayah').textContent = randomAyah.ayah;
+            document.getElementById('ayah-tafsir').textContent = randomAyah.tafsir;
+        }
+
+        function showAzkar(type) {
+            const title = type === 'morning' ? 'أذكار الصباح' : type === 'evening' ? 'أذكار المساء' : 'أذكار النوم';
+            const list = azkar[type].map(d => `<p>• ${d}</p>`).join('');
+            document.getElementById('azkar-display').innerHTML = `<h3>${title}</h3>` + list;
+        }
+
+        // تحميل التقدم عند فتح الصفحة
+        updateProgress();
+        suggestDailySurah();
+        showDailyAyah();
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خاتم القرآن الكريم</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri&family=Cairo:wght@400;700&display=swap');
+        
+        body { 
+            font-family: 'Cairo', sans-serif; 
+            background: linear-gradient(to bottom, #e0f7fa, #ffffff); 
+            color: #1e3a5f; 
+            margin: 0; 
+            padding: 0; 
+            text-align: center; 
+        }
+        header { 
+            background: #004d40; 
+            color: #fff; 
+            padding: 30px; 
+            font-family: 'Amiri', serif; 
+        }
+        h1 { font-size: 36px; margin: 0; }
+        h2 { color: #004d40; margin-top: 30px; }
+        .container { max-width: 900px; margin: 20px auto; padding: 20px; background: #fff; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .progress-bar { 
+            height: 35px; 
+            background: #e0e0e0; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            margin: 30px 0; 
+            position: relative;
+        }
+        .progress-fill { 
+            height: 100%; 
+            background: linear-gradient(to right, #004d40, #00796b); 
+            width: 0%; 
+            transition: width 1.5s ease; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: white; 
+            font-weight: bold; 
+            font-size: 18px;
+        }
+        button { 
+            padding: 14px 30px; 
+            font-size: 18px; 
+            background: #00796b; 
+            color: white; 
+            border: none; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            margin: 15px; 
+            transition: 0.3s; 
+        }
+        button:hover { background: #004d40; transform: scale(1.05); }
+        .section { margin: 50px 0; padding: 30px; background: #f1f8e9; border-radius: 15px; }
+        .azkar-list { text-align: right; line-height: 2.5; font-size: 22px; direction: rtl; }
+        p.big { font-size: 28px; font-family: 'Amiri', serif; color: #004d40; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>خاتم القرآن الكريم 🕌</h1>
+        <p>تابع تقدمك في ختم القرآن وحافظ على تلاوتك اليومية</p>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>تقدم ختمتك الحالية</h2>
+            <p>أكملت <span id="completed">0</span> من 114 سورة</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill">0%</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>سورة اليوم</h2>
+            <p class="big" id="daily-surah">اضغط الزر لاقتراح سورة جديدة</p>
+            <button onclick="suggestDailySurah()">اقتراح سورة عشوائية</button>
+            <button onclick="markSurahComplete()">تمت قراءتها اليوم</button>
+        </div>
+
+        <div class="section">
+            <h2>آية اليوم</h2>
+            <p class="big" id="daily-ayah">اضغط لعرض آية جديدة</p>
+            <p id="ayah-tafsir" style="font-style:italic; font-size:20px; margin-top:20px;"></p>
+            <button onclick="showDailyAyah()">عرض آية عشوائية مع تفسير</button>
+        </div>
+
+        <div class="section">
+            <h2>أذكار يومية</h2>
+            <button onclick="showAzkar('morning')">أذكار الصباح</button>
+            <button onclick="showAzkar('evening')">أذكار المساء</button>
+            <button onclick="showAzkar('sleep')">أذكار النوم</button>
+            <div id="azkar-display" class="azkar-list"></div>
+        </div>
+    </div>
+
+    <script>
+        const surahs = [
+            "الفاتحة", "البقرة", "آل عمران", "النساء", "المائدة", "الأنعام", "الأعراف", "الأنفال", "التوبة", "يونس",
+            "هود", "يوسف", "الرعد", "إبراهيم", "الحجر", "النحل", "الإسراء", "الكهف", "مريم", "طه",
+            "الأنبياء", "الحج", "المؤمنون", "النور", "الفرقان", "الشعراء", "النمل", "القصص", "العنكبوت", "الروم",
+            "لقمان", "السجدة", "الأحزاب", "سبأ", "فاطر", "يس", "الصافات", "ص", "الزمر", "غافر",
+            "فصلت", "الشورى", "الزخرف", "الدخان", "الجاثية", "الأحقاف", "محمد", "الفتح", "الحجرات", "ق",
+            "الذاريات", "الطور", "النجم", "القمر", "الرحمن", "الواقعة", "الحديد", "المجادلة", "الحشر", "الممتحنة",
+            "الصف", "الجمعة", "المنافقون", "التغابن", "الطلاق", "التحريم", "الملك", "القلم", "الحاقة", "المعارج",
+            "نوح", "الجن", "المزمل", "المدثر", "القيامة", "الإنسان", "المرسلات", "النبأ", "النازعات", "عبس",
+            "التكوير", "الانفطار", "المطففين", "الانشقاق", "البروج", "الطارق", "الأعلى", "الغاشية", "الفجر", "البلد",
+            "الشمس", "الليل", "الضحى", "الشرح", "التين", "العلق", "القدر", "البينة", "الزلزلة", "العاديات",
+            "القارعة", "التكاثر", "العصر", "الهمزة", "الفيل", "قريش", "الماعون", "الكوثر", "الكافرون", "النصر",
+            "المسد", "الإخلاص", "الفلق", "الناس"
+        ];
+
+        const ayahs = [
+            {ayah: "إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ ۚ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا", tafsir: "سورة الأحزاب - أمر الله تعالى المؤمنين بالصلاة والسلام على النبي محمد صلى الله عليه وسلم."},
+            {ayah: "وَمَنْ يَتَّقِ اللَّهَ يَجْعَلْ لَهُ مَخْرَجًا ۝ وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ", tafsir: "سورة الطلاق - من يتق الله ييسر له الأمور ويرزقه من حيث لا يحتسب."},
+            {ayah: "فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ", tafsir: "سورة البقرة - اذكروا الله يذكركم، واشكروه على نعمه."},
+            {ayah: "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا", tafsir: "سورة البقرة - الله لا يكلف نفسًا إلا بما تستطيع."},
+            {ayah: "إِنَّ مَعَ الْعُسْرِ يُسْرًا", tafsir: "سورة الشرح - مع كل شدة فرج ويسر."}
+        ];
+
+        const azkar = {
+            morning: [
+                "أصبحنا وأصبح الملك لله والحمد لله، لا إله إلا الله وحده لا شريك له...",
+                "اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت وإليك النشور",
+                "آية الكرسي (ثلاث مرات)",
+                "سورة الإخلاص والمعوذتين (ثلاث مرات كل واحدة)",
+                "سبحان الله وبحمده عدد خلقه ورضا نفسه وزِنَة عرشه ومداد كلماته (ثلاث مرات)"
+            ],
+            evening: [
+                "أمسينا وأمسى الملك لله والحمد لله، لا إله إلا الله وحده لا شريك له...",
+                "اللهم بك أمسينا وبك أصبحنا وبك نحيا وبك نموت وإليك المصير",
+                "آية الكرسي (ثلاث مرات)",
+                "سورة الإخلاص والمعوذتين (ثلاث مرات كل واحدة)"
+            ],
+            sleep: [
+                "باسمك اللهم أموت وأحيا",
+                "آية الكرسي",
+                "سورة الإخلاص والفلق والناس (ثلاث مرات)",
+                "اللهم قني عذابك يوم تبعث عبادك (ثلاث مرات)"
+            ]
+        };
+
+        let completed = parseInt(localStorage.getItem('quranCompleted') || '0');
+
+        function updateProgress() {
+            const percent = Math.round((completed / 114) * 100);
+            document.getElementById('completed').textContent = completed;
+            document.getElementById('progress-fill').style.width = percent + '%';
+            document.getElementById('progress-fill').textContent = percent + '%';
+        }
+
+        function suggestDailySurah() {
+            const random = surahs[Math.floor(Math.random() * surahs.length)];
+            document.getElementById('daily-surah').textContent = random;
+        }
+
+        function markSurahComplete() {
+            if (completed < 114) {
+                completed++;
+                localStorage.setItem('quranCompleted', completed);
+                updateProgress();
+                alert('مبروك! سورة مكتملة بنجاح 🌟');
+                if (completed === 114) {
+                    alert('تهانينا الحارة! لقد أكملت ختم القرآن الكريم 🏆');
+                }
+            }
+        }
+
+        function showDailyAyah() {
+            const randomAyah = ayahs[Math.floor(Math.random() * ayahs.length)];
+            document.getElementById('daily-ayah').textContent = randomAyah.ayah;
+            document.getElementById('ayah-tafsir').textContent = randomAyah.tafsir;
+        }
+
+        function showAzkar(type) {
+            const title = type === 'morning' ? 'أذكار الصباح' : type === 'evening' ? 'أذكار المساء' : 'أذكار النوم';
+            const list = azkar[type].map(d => `<p>• ${d}</p>`).join('');
+            document.getElementById('azkar-display').innerHTML = `<h3>${title}</h3>` + list;
+        }
+
+        // تحميل التقدم عند فتح الصفحة
+        updateProgress();
+        suggestDailySurah();
+        showDailyAyah();
+    </script>
+</body>
+</html>
